@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="{{@site.locale}}">
-<head>
+<html lang="{{@site.locale}}" class="scroll-smooth" >
 
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset "built/index.css"}}" />
@@ -10,70 +10,201 @@
     <title>{{meta_title}}</title>
 
     {{ghost_head}}
-    {{!-- Outputs important meta data and settings, should always be in <head> --}}
-
+    {{!-- Outputs important meta data and settings, should always be in
+    <head> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cash/8.1.5/cash.min.js"></script>
 </head>
-<body class="{{body_class}}">
-<div class="gh-viewport">
 
-<header id="gh-head" class="gh-head">
-    <nav class="gh-head-inner gh-container">
-
-        <div class="gh-head-brand">
-            <a class="gh-head-logo" href="{{@site.url}}">
-                {{#if @site.logo}}
-                    <img src="{{@site.logo}}" alt="{{@site.title}}" />
-                {{else}}
-                    {{@site.title}}
-                {{/if}}
-            </a>
-            <a class="gh-burger" role="button" aria-label="menu">
-                <div class="gh-burger-box">
-                    <div class="gh-burger-inner"></div>
+<body class="{{body_class}} font-def bg-tiles-pattern bg-repeat bg-[length:32px_32px]"  data-theme="darkStudio">
+    <header id="gh-head" >
+        <nav>
+            <div  class="fixed z-20 top-0 left-0 right-0 h-[44px] ">
+                <div class="flex flex-row mx-auto justify-left  h-[44px] bg-neutral-content items-center">
+                    <div class="w-4/12  pl-4 lg:w-4/12  xl:w-2/12">
+                      <a class="gh-head-logo{{#unless @site.logo}} no-image{{/unless}}" href="{{@site.url}}">
+                        {{#if @site.logo}}
+                            <img src="{{@site.logo}}" alt="{{@site.title}}">
+                        {{else}}
+                            {{@site.title}}
+                        {{/if}}
+                        </a>
+                    </div>
+                    <div class="w-8/12  pl-4 lg:w-4/12  xl:w-5/12 "> 
+                        <select id="dropdown_jump_in_page" class="hidden select  pl-55 select-xs w-fit max-w-xs">
+                            <option disabled selected>Jump on this page to:</option>
+                        </select>
+                      
+                    </div>
+                    <div class="hidden pl-5  lg:w-4/12  xl:w-3/12 xl:mr-[16.666667%]  lg:inline-flex">Writing</div>
                 </div>
-            </a>
-        </div>
-        <div class="gh-head-menu">
-            {{navigation}}
-        </div>
-        <div class="gh-head-actions">
-            <div class="gh-head-actions-list">
-                {{search}}
-                {{#if @site.members_enabled}}
-                    {{^if @member}}
-                    <a class="gh-button" href="{{@site.signup_url}}">Subscribe</a>
-                    {{else}}
-                    <a class="gh-button" href="#/portal/account">Account</a>
-                    {{/if}}
-                {{/if}}
             </div>
+        </nav>
+    </header>
+
+    <main class="gh-main">
+                
+        <div class="gh-viewport">
+            {{#is "home"}}
+            <section id="Human-Tech-Studio" >
+                {{#> grid }}
+                   {{#>grid-cl cssClass="_deco_blue_bars bg-neutral-content" }}
+                   01 /
+                   {{/grid-cl}}
+                    {{#>grid-cr  cssClass="bg-base-200 bg-transparent"}}
+                     Right
+                    {{/grid-cr}}
+                {{/grid}}
+            </section>
+            <section id="What-we-sahpe-and-manage" class="bg-transparent" data-theme="frindlyStudio">
+                {{#> grid }}
+                   {{#>grid-cl cssClass="bg-neutral-content"}}
+                   02 /
+                   {{/grid-cl}}
+                    {{#>grid-cr  cssClass="bg-base-100"}}
+                     Right
+                    {{/grid-cr}}
+                {{/grid}}
+            </section>
+             <section id="ddod" data-theme="lightStudio" class="bg-transparent">
+                {{#> grid }}
+                   {{#>grid-cl cssClass="bg-neutral-content"}}
+                   03 /
+                   {{/grid-cl}}
+                    {{#>grid-cr  cssClass="bg-base-100"}}
+                     Right
+                    {{/grid-cr}}
+                {{/grid}}
+            </section>
+      {{/is}}
         </div>
-    </nav>
-</header>
+        {{!-- {{{body}}} --}}
+            {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
+    </main>
 
-<main class="gh-main">
+    <footer class="gh-foot  bg-neutral-content h-[50vh]">
+        <section id="Footer" class="copyright">
+         
+                <div class="flex flex-row mx-auto justify-left text-sm bg-neutral-content items-top">
+                      <div class="w-4/12 h-[96px]   lg:w-4/12  xl:w-2/12"></div>
+                    <div class="w-8/12  h-[96px]  lg:w-4/12  xl:w-5/12 "> 
+               
+                    </div>
+                    <div class="hiddenh-[96px]  lg:w-4/12  xl:w-3/12 xl:mr-[16.666667%] ">
+                    
+                    </div>
+                 
+                    
+                </div>
+                     <div class="flex flex-row mx-auto justify-left text-sm bg-neutral-content items-top">
+                    <div class="w-4/12 h-[96px]   lg:w-4/12  xl:w-2/12"></div>
+                    <div class="w-8/12  h-[96px]  lg:w-4/12  xl:w-5/12 "> 
+                       <p class="pb-2 leading-[18px] text-secondary">Enjoy the rest of your<br> <span id="status-day">Day</span>!</p>
+                    </div>
+                    <div class="h-[96px]  lg:w-4/12  xl:w-3/12 xl:mr-[16.666667%] ">
+                        <p class="pb-2 leading-[18px]">{{#link class="link link-secondary link-hover" href="mailto:hello@humantech.studio"}} Have questions? <br> <u>Please email us.</u> {{/link}}</p>
+                       <p class="pb-2 leading-[18px]">Copyright © {{date format="YYYY"}}<br> Markus Heinrich, Mathias Prinz<br>
+                            {{#link class="link " href="/imprint/"}}Imprint{{/link}}</p>
+                    </div>
+                    
+                </div>
+            </div>
+        
+        
+        </section>
+      
+            {{!-- <div class="gh-powered-by"><a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a></div> --}}
+    </footer>
 
-    {{{body}}}
-    {{!-- All content gets inserted here, index.hbs, post.hbs, etc --}}
+    
 
-</main>
-
-<footer class="gh-foot">
-    <div class="gh-container">
-        <div class="gh-foot-menu">
-            {{navigation type="secondary"}}
-        </div>
-        <div class="gh-foot-meta">
-            Published with <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
-        </div>
-    </div>
-</footer>
-
-</div>
-
-{{!-- <foot> --}}
-{{ghost_foot}}
-{{!-- Outputs important scripts - should always be included before closing body tag --}}
+  
+        {{ghost_foot}}
+        {{!-- Outputs important scripts - should always be included before closing body tag --}}
 
 </body>
+<script>
+ let setDay = (id, lang) => {
+      let weekday = {en: [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ]};
+
+      $(id).text( weekday[lang][new Date().getDay()]);
+    }
+
+setDay('#status-day', 'en');
+</script>
+  <script type="text/javascript">
+     
+    let $dropDown = $('#dropdown_jump_in_page');
+    let $sections = $('section:not(#Footer)');
+    let pauseSetScrollLocation  = false;
+    let setScrollLocation = (val) => {
+        window.location = `#${val}`
+    };
+    let setDropdownSel = (i) => {
+        let val = $dropDown.find('option').eq(i).val();
+        $dropDown.prop('selectedIndex', i);
+        return val; 
+    };
+
+    let sectionsIdList = $sections.map(  (i, elm ) => {
+        $(`<option value="${$(elm).attr('id')}" selected>${i+1} / ${$(elm).attr('id').replaceAll('-', ' ')}</option>`).appendTo($dropDown)
+        return $(elm).attr('id');
+    });
+    
+   
+    
+    /*
+    let getScrollDir = (memory) => {
+        let st = window.pageYOffset || document.documentElement.scrollTop; 
+        memory = memory || {status: "initial", val: st};
+        if (st > memory.val) {
+            return {status: 'down', val:st <= 0 ? 0 : st } 
+        } else if (st < memory.val) {
+            return {status: 'up', val:st <= 0 ? 0 : st } 
+        } 
+        return {status: 'start', val:st <= 0 ? 0 : st } ;
+    }
+    */
+   
+    let elmIsInVP =  ( elm ) => {
+        let b = elm.getBoundingClientRect();
+        return { atVpTop: b.bottom > 0 && b.top <= 0, inVp:  !(b.top > innerHeight || b.bottom < 0), top: b.top, bottom: b.bottom, h:  $(elm).innerHeight() }
+    }
+
+     $(document)
+        .on('scroll', function () {
+            document.body.style.setProperty('--scroll', window.pageYOffset / (document.body.offsetHeight - window.innerHeight));
+        });
+
+    if ( $sections.length > 1 ) { 
+        $dropDown.removeClass('hidden');
+        setDropdownSel(1)
+        //setScrollLocation(setDropdownSel(1));
+        //let scrollMemory =  getScrollDir();
+    
+ 
+        
+    $dropDown
+        .on('change', function () { pauseSetScrollLocation = true; setScrollLocation($(this).val())});
+    $(document)
+        .on('scrollend', function () { pauseSetScrollLocation = false; })
+        .on('scroll', function () {
+            document.body.style.setProperty('--scroll', window.pageYOffset / (document.body.offsetHeight - window.innerHeight));
+            if( pauseSetScrollLocation ) return;
+           // scrollMemory =  getScrollDir(scrollMemory);
+            $sections.each(function(i){
+                let el = this;
+                let is = elmIsInVP(el);
+                if (  is.atVpTop )  setDropdownSel(i+1);
+            });     
+        }); 
+    }
+    </script>
 </html>
